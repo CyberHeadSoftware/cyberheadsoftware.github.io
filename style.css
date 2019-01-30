@@ -1,0 +1,39 @@
+nav {
+	
+}
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #B7F88D;
+}
+nav li {
+	float: left;
+	border-right: 1px solid #888;
+}
+nav li a {
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: #B7F88D;
+}
+nav li a:hover {
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: #99F161;
+}
+
+nav li a.current-page {
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: #81E83E;
+}
