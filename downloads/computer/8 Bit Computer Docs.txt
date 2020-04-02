@@ -1,0 +1,154 @@
+Opcode Address Structure:
+| Opcode | Flags | Param | Step
+ 00000000   000     00     000
+ 
+Flags:
+CF:	Carry Flag
+ZF:	Zero Flag. Set if ALU result is zero
+EF: Extra Flag. Commonly used as a sign flag
+________________________________________________________________________
+Instruction Syntax:
+
+keyword param1, param2
+
+* = address
+
+$ = label
+
+db [byte]: places byte at position where used
+________________________________________________________________________
+Instruction Set:
+
+00	(0000 0000):	nop
+
+01	(0000 0001):	mov x_r8, y_r8
+	Move y_r8 into x_r8; x != y
+
+02	(0000 0010):	lda, x_imm8
+	Load x_imm8 into A
+	
+03	(0000 0011):	ldb, x_imm8
+	Load x_imm8 into B
+
+04	(0000 0100):	lda, *x_adr8
+	Load byte at x_adr8 into A
+	
+05	(0000 0101):	ldb, *x_adr8
+	Load byte at x_adr8 into B
+	
+06	(0000 0110):	sta, *x_adr8
+	Store value of A at x_adr8
+	
+07	(0000 0111):	stb, *x_adr8
+	Store value of B at x_adr8
+	
+08	(0000 1000):	out x_r8
+	Displays value of x_r8 on the numeric display
+	
+09	(0000 1001):	add
+	Adds value of A and B, stores result in A, sets CF on overflow
+
+0A	(0000 1010):	add x_imm8
+	Adds value of A and x_imm8, stores result in A, sets CF on overflow
+	
+0B	(0000 1011):	sub
+	Subtracts value of B from A, stores result in A, sets EF if negative
+	
+0C	(0000 1100):	sub x_imm8
+	Subtracts value of x_imm8 from A, stores result in A, sets EF if negative
+	
+0D	(0000 1101):	jmp x_imm8
+	Jumps to specified position
+	
+0E	(0000 1110):	jc x_imm8
+	Jumps to specified position only if CF is set
+	
+0F	(0000 1111):	jz x_imm8
+	Jumps to specified position only if ZF is set
+	
+10	(0001 0000):	jef x_imm8
+	Jumps to specified position only if EF is set
+	
+11	(0001 0001):	jnc x_imm8
+	Jumps to specified position only if CF is not set
+	
+12	(0001 0010):	jnz x_imm8
+	Jumps to specified position only if ZF is not set
+	
+13	(0001 0011):	jnef x_imm8
+	Jumps to specified position only if EF is not set
+	
+14	(0001 0100):	inc x_r8
+	Increments x_r8 by 1, wraps around to 0x0, does not affect flags
+	
+-15	(0001 0101):	dec x_r8
+	Decrements x_r8 by 1, wraps around to 0x255, does not affect flags
+	
+-16	(0001 0110):	cmp x_r8, y_r8
+
+-17	(0001 0111):	cmpa x_imm8
+
+-18	(0001 1000):	cmpb x_imm8
+
+-19	(0001 1001):	clc
+	Clears the CF
+	
+-1A	(0001 1010):	stc
+	Sets the CF
+	
+-1B	(0001 1011):	mul
+
+-1B	(0001 1011):	div
+________________________________________________________________________ 
+Micro-Instructions:
+Bit	Instr		Bitmask
+0	HLT			1
+1	PC_EN		2
+2	PC_OUT		4
+3	JMP			8
+4	CTR_RST		10
+5	IR_WR		20
+6	IR_RD		40
+7	IR_CLR		80
+8	PR_WR		100
+9	PR_RD		200
+10	PR_CLR		400
+11	ADR_WR		800
+12	RAM_EN		1000
+13	RAM_RW		2000
+14	A_WR		4000
+15	A_RD		8000
+16	B_WR		10000
+17	B_RD		20000
+18	ALU_EN		40000
+19	ALU_OUT		80000
+20	ALU_OP0*	100000
+21	ALU_OP1*	200000
+22	ALU_OP2*	400000
+23	ALU_OP3*	800000
+24	OUT_DSP		1000000
+25	ALU_BS		2000000
+26	UNUSED		4000000
+27	UNUSED		8000000
+28	UNUSED		10000000
+29	UNUSED		20000000
+30	UNUSED		40000000
+31	ERROR		80000000
+________________________________________________________________________
+*ALU Operations
+0	0000	ADD
+1	0001	SUB
+2	0010	OR
+3	0011	AND
+4	0100	INC
+5	0101	DEC
+6	0110	MUL
+7	
+8	
+9	
+A	
+B	
+C	
+D	
+E	
+F	
