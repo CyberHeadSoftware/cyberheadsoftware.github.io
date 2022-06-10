@@ -40,17 +40,17 @@ nav li a.current-page {
 
 nav li a.disabled-link {
 	display: block;
-	color: #AAAAAA;
+	color: #CCCCCC;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
-	background-color: #81E83E;
+	background-color: #B7F88D;
 }
 nav li a.disabled-link:hover {
 	display: block;
-	color: #AAAAAA;
+	color: #CCCCCC;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
-	background-color: #81E83E;
+	background-color: #B7F88D;
 }
